@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -34,7 +29,7 @@ namespace Gateway
                         .AddEnvironmentVariables();
                 })
                 .ConfigureServices(services => {
-                    services.AddOcelot();
+                    services.AddOcelot().AddDelegatingHandler<MissingBodyDelegatingHandler>(true);
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
